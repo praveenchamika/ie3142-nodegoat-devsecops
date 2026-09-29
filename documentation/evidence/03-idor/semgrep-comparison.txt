@@ -1,0 +1,5 @@
+Custom Semgrep IDOR comparison
+================================
+Findings before remediation: 1
+Findings after remediation: 0
+Difference: 1

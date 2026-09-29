@@ -67,3 +67,6 @@ cypress/videos/
 
 # Local code backups
 *.before-ssjs-fix
+
+# Local IDOR remediation backup
+*.before-idor-fix

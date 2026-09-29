@@ -1,0 +1,22 @@
+rules:
+  - id: nodegoat-idor-route-user-id
+    message: >-
+      The allocations route obtains a user identifier from req.params.
+      This client-controlled identifier may allow access to another user's
+      allocations. Use req.session.userId or perform an explicit ownership
+      authorization check.
+    severity: ERROR
+    languages:
+      - javascript
+    metadata:
+      category: security
+      technology:
+        - express
+        - nodejs
+      cwe:
+        - "CWE-639: Authorization Bypass Through User-Controlled Key"
+      confidence: HIGH
+    paths:
+      include:
+        - app/routes/allocations.js
+    pattern: $REQ.params

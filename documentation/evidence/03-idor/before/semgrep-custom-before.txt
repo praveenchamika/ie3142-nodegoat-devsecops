@@ -1,0 +1,40 @@
+Rule semgrep-rules.nodegoat-idor-route-user-id contains an include pattern 'app/routes/allocations.js' that will soon be interpreted as '/app/routes/allocations.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-idor-route-user-id and change it to '**/app/routes/allocations.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/allocations.js'.
+Rule semgrep-rules.nodegoat-idor-route-user-id contains an include pattern 'app/routes/allocations.js' that will soon be interpreted as '/app/routes/allocations.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-idor-route-user-id and change it to '**/app/routes/allocations.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/allocations.js'.
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 1 Code rule:
+  Scanning 1 file.
+Rule semgrep-rules.nodegoat-idor-route-user-id contains an include pattern 'app/routes/allocations.js' that will soon be interpreted as '/app/routes/allocations.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-idor-route-user-id and change it to '**/app/routes/allocations.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/allocations.js'.
+Rule semgrep-rules.nodegoat-idor-route-user-id contains an include pattern 'app/routes/allocations.js' that will soon be interpreted as '/app/routes/allocations.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-idor-route-user-id and change it to '**/app/routes/allocations.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/allocations.js'.
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 1 (1 blocking)
+ • Rules run: 1
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 1 rule on 1 file: 1 finding.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+                  
+                  
+┌────────────────┐
+│ 1 Code Finding │
+└────────────────┘
+                             
+    app/routes/allocations.js
+   ❯❯❱ semgrep-rules.nodegoat-idor-route-user-id
+          ❰❰ Blocking ❱❱
+          The allocations route obtains a user identifier from req.params. This client-controlled identifier
+          may allow access to another user's allocations. Use req.session.userId or perform an explicit     
+          ownership authorization check.                                                                    
+                                                                                                            
+           18┆ } = req.params;
+
