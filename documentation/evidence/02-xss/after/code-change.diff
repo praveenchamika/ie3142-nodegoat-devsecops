@@ -1,0 +1,73 @@
+diff --git a/app/routes/profile.js b/app/routes/profile.js
+index 0b5b34f..bf4afa7 100644
+--- a/app/routes/profile.js
++++ b/app/routes/profile.js
+@@ -25,7 +25,7 @@ function ProfileHandler(db) {
+             // while the developer intentions were correct in encoding the user supplied input so it
+             // doesn't end up as an XSS attack, the context is incorrect as it is encoding the firstname for HTML
+             // while this same variable is also used in the context of a URL link element
+-            doc.website = ESAPI.encoder().encodeForHTML(doc.website);
++	    doc.website = ESAPI.encoder().encodeForURL(doc.website || "");	
+             // fix it by replacing the above with another template variable that is used for 
+             // the context of a URL in a link header
+             // doc.website = ESAPI.encoder().encodeForURL(doc.website)
+@@ -49,6 +49,28 @@ function ProfileHandler(db) {
+             bankRouting
+         } = req.body;
+ 
++	const validatedFirstName = String(firstName || "").trim();
++	const validatedLastName = String(lastName || "").trim();
++
++	const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{1,50}$/;
++
++	if (
++    	   !namePattern.test(validatedFirstName) ||
++           !namePattern.test(validatedLastName)
++	) {
++    	   return res.status(400).render("profile", {
++               updateError:
++                   "First and last names may contain letters, spaces, apostrophes and hyphens only.",
++         	   firstName: validatedFirstName,
++       		   lastName: validatedLastName,
++        	   ssn,
++        	   dob,
++        	   address,
++         	   bankAcc,
++       		   bankRouting,
++        	   environmentalScripts
++     	   });	
++	}
+         // Fix for Section: ReDoS attack
+         // The following regexPattern that is used to validate the bankRouting number is insecure and vulnerable to
+         // catastrophic backtracking which means that specific type of input may cause it to consume all CPU resources
+@@ -56,7 +78,7 @@ function ProfileHandler(db) {
+         // --
+         // The Fix: Instead of using greedy quantifiers the same regex will work if we omit the second quantifier +
+         // const regexPattern = /([0-9]+)\#/;
+-        const regexPattern = /([0-9]+)+\#/;
++        const regexPattern = /^[0-9]++#$/;
+         // Allow only numbers with a suffix of the letter #, for example: 'XXXXXX#'
+         const testComplyWithRequirements = regexPattern.test(bankRouting);
+         // if the regex test fails we do not allow saving
+@@ -80,7 +102,7 @@ function ProfileHandler(db) {
+         } = req.session;
+ 
+         profile.updateUser(
+-            parseInt(userId),
++            parseInt(userI, 10),
+             firstName,
+             lastName,
+             ssn,
+diff --git a/server.js b/server.js
+index d6bb500..ef42398 100644
+--- a/server.js
++++ b/server.js
+@@ -134,7 +134,7 @@ MongoClient.connect(db, (err, db) => {
+     // Template system setup
+     swig.setDefaults({
+         // Autoescape disabled
+-        autoescape: false
++        autoescape: true
+         /*
+         // Fix for A3 - XSS, enable auto escaping
+         autoescape: true // default value
