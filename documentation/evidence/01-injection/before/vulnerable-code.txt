@@ -1,0 +1,27 @@
+20-            contrib.userId = userId; //set for nav menu items
+21-            return res.render("contributions", {
+22-                ...contrib,
+23-                environmentalScripts
+24-            });
+25-        });
+26-    };
+27-
+28-    this.handleContributionsUpdate = (req, res, next) => {
+29-
+30-        /*jslint evil: true */
+31-        // Insecure use of eval() to parse inputs
+32:        const preTax = eval(req.body.preTax);
+33:        const afterTax = eval(req.body.afterTax);
+34:        const roth = eval(req.body.roth);
+35-
+36-        /*
+37-        //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval
+38-        const preTax = parseInt(req.body.preTax);
+39-        const afterTax = parseInt(req.body.afterTax);
+40-        const roth = parseInt(req.body.roth);
+41-        */
+42-        const {
+43-            userId
+44-        } = req.session;
+45-
+46-        //validate contributions

@@ -64,3 +64,6 @@ cypress/videos/
 # IDE settings
 .vscode/
 .idea/
+
+# Local code backups
+*.before-ssjs-fix
