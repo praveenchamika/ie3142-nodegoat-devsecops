@@ -1,0 +1,41 @@
+Rule semgrep-rules.nodegoat-benefits-route-missing-admin-check contains an include pattern 'app/routes/index.js' that will soon be interpreted as '/app/routes/index.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-benefits-route-missing-admin-check and change it to '**/app/routes/index.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/index.js'.
+Rule semgrep-rules.nodegoat-benefits-route-missing-admin-check contains an include pattern 'app/routes/index.js' that will soon be interpreted as '/app/routes/index.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-benefits-route-missing-admin-check and change it to '**/app/routes/index.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/index.js'.
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1 file tracked by git with 1 Code rule:
+  Scanning 1 file.
+Rule semgrep-rules.nodegoat-benefits-route-missing-admin-check contains an include pattern 'app/routes/index.js' that will soon be interpreted as '/app/routes/index.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-benefits-route-missing-admin-check and change it to '**/app/routes/index.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/index.js'.
+Rule semgrep-rules.nodegoat-benefits-route-missing-admin-check contains an include pattern 'app/routes/index.js' that will soon be interpreted as '/app/routes/index.js' to comply with the Semgrepignore v2 and Gitignore specifications. To make this pattern permanently unanchored, edit rule semgrep-rules.nodegoat-benefits-route-missing-admin-check and change it to '**/app/routes/index.js'. To confirm the anchored behavior and avoid this warning, change it to '/app/routes/index.js'.
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 2 (2 blocking)
+ • Rules run: 1
+ • Targets scanned: 1
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 1 rule on 1 file: 2 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading
+                   
+                   
+┌─────────────────┐
+│ 2 Code Findings │
+└─────────────────┘
+                       
+    app/routes/index.js
+   ❯❯❱ semgrep-rules.nodegoat-benefits-route-missing-admin-check
+          ❰❰ Blocking ❱❱
+          The Benefits route checks authentication but does not apply the required administrator authorization
+          middleware. Add isAdmin after isLoggedIn to enforce server-side function-level access control.      
+                                                                                                              
+           55┆ app.get("/benefits", isLoggedIn, benefitsHandler.displayBenefits);
+            ⋮┆----------------------------------------
+           56┆ app.post("/benefits", isLoggedIn, benefitsHandler.updateBenefits);
+

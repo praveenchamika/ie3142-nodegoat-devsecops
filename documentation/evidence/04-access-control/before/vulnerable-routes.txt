@@ -1,0 +1,59 @@
+1-const SessionHandler = require("./session");
+2-const ProfileHandler = require("./profile");
+3:const BenefitsHandler = require("./benefits");
+4-const ContributionsHandler = require("./contributions");
+5-const AllocationsHandler = require("./allocations");
+6-const MemosHandler = require("./memos");
+7-const ResearchHandler = require("./research");
+8-const tutorialRouter = require("./tutorial");
+9-const ErrorHandler = require("./error").errorHandler;
+10-
+11-const index = (app, db) => {
+12-
+13-    "use strict";
+14-
+15-    const sessionHandler = new SessionHandler(db);
+16-    const profileHandler = new ProfileHandler(db);
+17:    const benefitsHandler = new BenefitsHandler(db);
+18-    const contributionsHandler = new ContributionsHandler(db);
+19-    const allocationsHandler = new AllocationsHandler(db);
+20-    const memosHandler = new MemosHandler(db);
+21-    const researchHandler = new ResearchHandler(db);
+22-
+23-    // Middleware to check if a user is logged in
+24-    const isLoggedIn = sessionHandler.isLoggedInMiddleware;
+25-
+26-    //Middleware to check if user has admin rights
+27-    const isAdmin = sessionHandler.isAdminUserMiddleware;
+28-
+29-    // The main page of the app
+--
+43-    // The main page of the app
+44-    app.get("/dashboard", isLoggedIn, sessionHandler.displayWelcomePage);
+45-
+46-    // Profile page
+47-    app.get("/profile", isLoggedIn, profileHandler.displayProfile);
+48-    app.post("/profile", isLoggedIn, profileHandler.handleProfileUpdate);
+49-
+50-    // Contributions Page
+51-    app.get("/contributions", isLoggedIn, contributionsHandler.displayContributions);
+52-    app.post("/contributions", isLoggedIn, contributionsHandler.handleContributionsUpdate);
+53-
+54-    // Benefits Page
+55:    app.get("/benefits", isLoggedIn, benefitsHandler.displayBenefits);
+56:    app.post("/benefits", isLoggedIn, benefitsHandler.updateBenefits);
+57-    /* Fix for A7 - checks user role to implement  Function Level Access Control
+58:     app.get("/benefits", isLoggedIn, isAdmin, benefitsHandler.displayBenefits);
+59:     app.post("/benefits", isLoggedIn, isAdmin, benefitsHandler.updateBenefits);
+60-     */
+61-
+62-    // Allocations Page
+63-    app.get("/allocations/:userId", isLoggedIn, allocationsHandler.displayAllocations);
+64-
+65-    // Memos Page
+66-    app.get("/memos", isLoggedIn, memosHandler.displayMemos);
+67-    app.post("/memos", isLoggedIn, memosHandler.addMemos);
+68-
+69-    // Handle redirect for learning resources link
+70-    app.get("/learn", isLoggedIn, (req, res) => {
+71-        // Insecure way to handle redirects by taking redirect url from query string

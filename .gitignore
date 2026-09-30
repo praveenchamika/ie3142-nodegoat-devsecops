@@ -70,3 +70,6 @@ cypress/videos/
 
 # Local IDOR remediation backup
 *.before-idor-fix
+
+# Local access-control backups
+*.before-access-control-fix
