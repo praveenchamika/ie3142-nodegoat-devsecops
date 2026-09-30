@@ -67,3 +67,14 @@ cypress/videos/
 
 # Local code backups
 *.before-ssjs-fix
+
+# Local IDOR remediation backup
+*.before-idor-fix
+
+# Local access-control backups
+*.before-access-control-fix
+
+Dockerfile.before-trivy-fix
+
+# Local workflow backups
+*.backup

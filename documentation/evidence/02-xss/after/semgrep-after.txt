@@ -1,0 +1,135 @@
+                   
+                   
+┌─────────────────┐
+│ 8 Code Findings │
+└─────────────────┘
+                            
+  [36m[22m[24m  server.js[0m
+     ❱ javascript.express.security.audit.express-check-csurf-middleware-usage.express-check-csurf-middleware-usage
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          A CSRF middleware was not detected in your express application. Ensure you are either using one such
+          as `csurf` or `csrf` (see rule references) and/or you are properly doing CSRF validation in your    
+          routes with a token or cookies.                                                                     
+          Details: https://sg.run/BxzR                                                                        
+                                                                                                              
+           15┆ const app = express(); // Web framework to handle routing requests
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-default-name
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          Don’t use the default session cookie name Using the default session cookie name can open your app to
+          attacks. The security issue posed is similar to X-Powered-By: a potential attacker can use it to    
+          fingerprint the server and target attacks accordingly.                                              
+          Details: https://sg.run/1Z5x                                                                        
+                                                                                                              
+           78┆ app.use(session({
+           79┆     // genid: (req) => {
+           80┆     //    return genuuid() // use UUIDs for session IDs
+           81┆     //},
+           82┆     secret: cookieSecret,
+           83┆     // Both mandatory in Express v4
+           84┆     saveUninitialized: true,
+           85┆     resave: true
+           86┆     /*
+           87┆     // Fix for A5 - Security MisConfig
+             [hid 15 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          Default session middleware settings: `domain` not set. It indicates the domain of the cookie; use it
+          to compare against the domain of the server in which the URL is being requested. If they match, then
+          check the path attribute next.                                                                      
+          Details: https://sg.run/rd41                                                                        
+                                                                                                              
+           78┆ app.use(session({
+           79┆     // genid: (req) => {
+           80┆     //    return genuuid() // use UUIDs for session IDs
+           81┆     //},
+           82┆     secret: cookieSecret,
+           83┆     // Both mandatory in Express v4
+           84┆     saveUninitialized: true,
+           85┆     resave: true
+           86┆     /*
+           87┆     // Fix for A5 - Security MisConfig
+             [hid 15 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          Default session middleware settings: `expires` not set. Use it to set expiration date for persistent
+          cookies.                                                                                            
+          Details: https://sg.run/N4eG                                                                        
+                                                                                                              
+           78┆ app.use(session({
+           79┆     // genid: (req) => {
+           80┆     //    return genuuid() // use UUIDs for session IDs
+           81┆     //},
+           82┆     secret: cookieSecret,
+           83┆     // Both mandatory in Express v4
+           84┆     saveUninitialized: true,
+           85┆     resave: true
+           86┆     /*
+           87┆     // Fix for A5 - Security MisConfig
+             [hid 15 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-httponly
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          Default session middleware settings: `httpOnly` not set. It ensures the cookie is sent only over
+          HTTP(S), not client JavaScript, helping to protect against cross-site scripting attacks.        
+          Details: https://sg.run/ydBO                                                                    
+                                                                                                          
+           78┆ app.use(session({
+           79┆     // genid: (req) => {
+           80┆     //    return genuuid() // use UUIDs for session IDs
+           81┆     //},
+           82┆     secret: cookieSecret,
+           83┆     // Both mandatory in Express v4
+           84┆     saveUninitialized: true,
+           85┆     resave: true
+           86┆     /*
+           87┆     // Fix for A5 - Security MisConfig
+             [hid 15 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          Default session middleware settings: `path` not set. It indicates the path of the cookie; use it to
+          compare against the request path. If this and domain match, then send the cookie in the request.   
+          Details: https://sg.run/b7pd                                                                       
+                                                                                                             
+           78┆ app.use(session({
+           79┆     // genid: (req) => {
+           80┆     //    return genuuid() // use UUIDs for session IDs
+           81┆     //},
+           82┆     secret: cookieSecret,
+           83┆     // Both mandatory in Express v4
+           84┆     saveUninitialized: true,
+           85┆     resave: true
+           86┆     /*
+           87┆     // Fix for A5 - Security MisConfig
+             [hid 15 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          Default session middleware settings: `secure` not set. It ensures the browser only sends the cookie
+          over HTTPS.                                                                                        
+          Details: https://sg.run/9oKz                                                                       
+                                                                                                             
+           78┆ app.use(session({
+           79┆     // genid: (req) => {
+           80┆     //    return genuuid() // use UUIDs for session IDs
+           81┆     //},
+           82┆     secret: cookieSecret,
+           83┆     // Both mandatory in Express v4
+           84┆     saveUninitialized: true,
+           85┆     resave: true
+           86┆     /*
+           87┆     // Fix for A5 - Security MisConfig
+             [hid 15 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server
+          [31m[1m[24m❰❰ Blocking ❱❱[0m
+          Checks for any usage of http servers instead of https servers. Encourages the usage of https       
+          protocol instead of http, which does not have TLS and is therefore unencrypted. Using http can lead
+          to man-in-the-middle attacks in which the attacker is able to read sensitive information.          
+          Details: https://sg.run/x1zL                                                                       
+                                                                                                             
+          145┆ http.createServer(app).listen(port, () => {
+

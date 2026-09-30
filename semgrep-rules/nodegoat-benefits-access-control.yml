@@ -1,0 +1,25 @@
+rules:
+  - id: nodegoat-benefits-route-missing-admin-check
+    message: >-
+      The Benefits route checks authentication but does not apply the
+      required administrator authorization middleware. Add isAdmin after
+      isLoggedIn to enforce server-side function-level access control.
+    severity: ERROR
+    languages:
+      - javascript
+    metadata:
+      category: security
+      technology:
+        - express
+        - nodejs
+      cwe:
+        - "CWE-862: Missing Authorization"
+      confidence: HIGH
+    paths:
+      include:
+        - app/routes/index.js
+    pattern-either:
+      - pattern: |
+          app.get("/benefits", isLoggedIn, $HANDLER);
+      - pattern: |
+          app.post("/benefits", isLoggedIn, $HANDLER);

@@ -1,0 +1,59 @@
+web-1  | 2026-09-29T14:09:46.686293634Z mongo is ready for connections
+web-1  | 2026-09-29T14:09:46.791264342Z Current Config:
+web-1  | 2026-09-29T14:09:46.792035134Z {
+web-1  | 2026-09-29T14:09:46.792044800Z   port: 4000,
+web-1  | 2026-09-29T14:09:46.792046384Z   db: 'mongodb://mongo:27017/nodegoat',
+web-1  | 2026-09-29T14:09:46.792047509Z   cookieSecret: 'session_cookie_secret_key_here',
+web-1  | 2026-09-29T14:09:46.792048425Z   cryptoKey: 'a_secure_key_for_crypto_here',
+web-1  | 2026-09-29T14:09:46.792049342Z   cryptoAlgo: 'aes256',
+web-1  | 2026-09-29T14:09:46.792050217Z   hostName: 'localhost',
+web-1  | 2026-09-29T14:09:46.792051092Z   environmentalScripts: [
+web-1  | 2026-09-29T14:09:46.792052050Z     `<script>document.write("<script src='http://" + (location.host || "localhost").split(":")[0] + ":35729/livereload.js'></" + "script>");</script>`
+web-1  | 2026-09-29T14:09:46.792053842Z   ],
+web-1  | 2026-09-29T14:09:46.792054717Z   zapHostName: '192.168.56.20',
+web-1  | 2026-09-29T14:09:46.792055634Z   zapPort: '8080',
+web-1  | 2026-09-29T14:09:46.792056467Z   zapApiKey: value-removed-from-evidence
+web-1  | 2026-09-29T14:09:46.792057384Z   zapApiFeedbackSpeed: 5000
+web-1  | 2026-09-29T14:09:46.792058259Z }
+web-1  | 2026-09-29T14:09:46.850434301Z Connected to the database
+web-1  | 2026-09-29T14:09:46.850458259Z Dropping existing collections
+web-1  | 2026-09-29T14:09:46.855333342Z Dropped collection: users
+web-1  | 2026-09-29T14:09:46.857736009Z Dropped collection: allocations
+web-1  | 2026-09-29T14:09:46.857826967Z Dropped collection: counters
+web-1  | 2026-09-29T14:09:46.862512467Z Users to insert:
+web-1  | 2026-09-29T14:09:46.862532467Z {"_id":1,"userName":"admin","firstName":"Node Goat","lastName":"Admin","password":"Admin_123","isAdmin":true}
+web-1  | 2026-09-29T14:09:46.862534092Z {"_id":2,"userName":"user1","firstName":"John","lastName":"Doe","benefitStartDate":"2030-01-10","password":"User1_123"}
+web-1  | 2026-09-29T14:09:46.862535509Z {"_id":3,"userName":"user2","firstName":"Will","lastName":"Smith","benefitStartDate":"2025-11-30","password":"User2_123"}
+web-1  | 2026-09-29T14:09:46.869773717Z countersCol.insert
+web-1  | 2026-09-29T14:09:46.869779801Z {"result":{"ok":1,"n":1},"ops":[{"_id":"userId","seq":3}],"insertedCount":1,"insertedIds":["userId"]}
+web-1  | 2026-09-29T14:09:46.871322134Z users.insertMany
+web-1  | 2026-09-29T14:09:46.871326509Z {"result":{"ok":1,"n":3},"ops":[{"_id":1,"userName":"admin","firstName":"Node Goat","lastName":"Admin","password":"Admin_123","isAdmin":true},{"_id":2,"userName":"user1","firstName":"John","lastName":"Doe","benefitStartDate":"2030-01-10","password":"User1_123"},{"_id":3,"userName":"user2","firstName":"Will","lastName":"Smith","benefitStartDate":"2025-11-30","password":"User2_123"}],"insertedCount":3,"insertedIds":[1,2,3]}
+web-1  | 2026-09-29T14:09:46.871375759Z Allocations to insert:
+web-1  | 2026-09-29T14:09:46.871382051Z {"userId":1,"stocks":25,"funds":30,"bonds":45}
+web-1  | 2026-09-29T14:09:46.871389134Z {"userId":2,"stocks":34,"funds":17,"bonds":49}
+web-1  | 2026-09-29T14:09:46.871423009Z {"userId":3,"stocks":10,"funds":28,"bonds":62}
+web-1  | 2026-09-29T14:09:46.876588884Z allocations.insertMany
+web-1  | 2026-09-29T14:09:46.876674717Z {"result":{"ok":1,"n":3},"ops":[{"userId":1,"stocks":25,"funds":30,"bonds":45,"_id":"6abbc6aaeb23e60009b15971"},{"userId":2,"stocks":34,"funds":17,"bonds":49,"_id":"6abbc6aaeb23e60009b15972"},{"userId":3,"stocks":10,"funds":28,"bonds":62,"_id":"6abbc6aaeb23e60009b15973"}],"insertedCount":3,"insertedIds":["6abbc6aaeb23e60009b15971","6abbc6aaeb23e60009b15972","6abbc6aaeb23e60009b15973"]}
+web-1  | 2026-09-29T14:09:46.876678009Z Database reset performed successfully
+web-1  | 2026-09-29T14:09:47.013249717Z 
+web-1  | 2026-09-29T14:09:47.013305967Z > owasp-nodejs-goat@1.3.0 start /home/node/app
+web-1  | 2026-09-29T14:09:47.013308676Z > node server.js
+web-1  | 2026-09-29T14:09:47.013309634Z 
+web-1  | 2026-09-29T14:09:47.178747051Z Current Config:
+web-1  | 2026-09-29T14:09:47.179287259Z {
+web-1  | 2026-09-29T14:09:47.179292676Z   port: 4000,
+web-1  | 2026-09-29T14:09:47.179293926Z   db: 'mongodb://mongo:27017/nodegoat',
+web-1  | 2026-09-29T14:09:47.179294926Z   cookieSecret: 'session_cookie_secret_key_here',
+web-1  | 2026-09-29T14:09:47.179295884Z   cryptoKey: 'a_secure_key_for_crypto_here',
+web-1  | 2026-09-29T14:09:47.179296801Z   cryptoAlgo: 'aes256',
+web-1  | 2026-09-29T14:09:47.179297676Z   hostName: 'localhost',
+web-1  | 2026-09-29T14:09:47.179298551Z   environmentalScripts: [
+web-1  | 2026-09-29T14:09:47.179299467Z     `<script>document.write("<script src='http://" + (location.host || "localhost").split(":")[0] + ":35729/livereload.js'></" + "script>");</script>`
+web-1  | 2026-09-29T14:09:47.179301301Z   ],
+web-1  | 2026-09-29T14:09:47.179302217Z   zapHostName: '192.168.56.20',
+web-1  | 2026-09-29T14:09:47.179303134Z   zapPort: '8080',
+web-1  | 2026-09-29T14:09:47.179303967Z   zapApiKey: value-removed-from-evidence
+web-1  | 2026-09-29T14:09:47.179304884Z   zapApiFeedbackSpeed: 5000
+web-1  | 2026-09-29T14:09:47.179305759Z }
+web-1  | 2026-09-29T14:09:47.201822092Z Connected to the database
+web-1  | 2026-09-29T14:09:47.204985551Z Express http server listening on port 4000
