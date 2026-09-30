@@ -1,0 +1,14 @@
+Evidence generated:
+Tue Sep 29 19:42:47 +0530 2026
+
+Git:
+git version 2.49.0
+
+Docker:
+Docker version 29.8.1, build 4a63305
+
+Docker Compose:
+Docker Compose version v5.5.1
+
+Current commit:
+ef1046cfdd787eb6ec08142c4fa6469dca5d0bf9

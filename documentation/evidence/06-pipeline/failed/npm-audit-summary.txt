@@ -1,0 +1,11 @@
+npm Dependency Security Gate
+============================
+Low: 4
+Moderate: 29
+High: 55
+Critical: 30
+Total: 118
+
+Gate threshold: critical
+Gate result: failed
+Exit code: 1

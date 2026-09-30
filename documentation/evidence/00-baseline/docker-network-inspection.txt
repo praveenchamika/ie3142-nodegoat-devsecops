@@ -1,0 +1,64 @@
+[
+    {
+        "Name": "ie3142-devsecops-project_default",
+        "Id": "da1eccf9e4b7d6131033a3ea607ade5c6413bf87e5de6dd590fbb04e36509474",
+        "Created": "2026-09-29T13:28:48.472719718Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {
+            "com.docker.compose.config-hash": "4c7c87da40abfd7016cc4947c34de078749a1d01f06b5082325b23645be4752d",
+            "com.docker.compose.network": "default",
+            "com.docker.compose.project": "ie3142-devsecops-project",
+            "com.docker.compose.version": "5.5.1"
+        },
+        "Containers": {
+            "ed1b0f82f248f9a15441a08a503d158e3aff97b8bb8bcc0de1eb712fbdb3c99d": {
+                "Name": "ie3142-devsecops-project-web-1",
+                "EndpointID": "06c6ede14a558c7cc91ce910690f6ae0b5e884895a60928c7c93310523906509",
+                "MacAddress": "12:a9:37:f8:25:ff",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            },
+            "edb5dbfd9f8c8f23da872013de2964e5044220f45667999996ac45817f0b0f45": {
+                "Name": "ie3142-devsecops-project-mongo-1",
+                "EndpointID": "8a2c7b7057f0ba25797161a1510dc7e56bfac82564d06a6371b159b123a13501",
+                "MacAddress": "be:58:47:e6:68:df",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]
