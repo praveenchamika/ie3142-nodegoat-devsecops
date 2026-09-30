@@ -16,28 +16,21 @@ Icon?
 # Idea stuff
 .idea/**
 
-# Zap output
+# ZAP output
 report*.html
 
-# e2e
+# E2E output
 test/e2e/screenshots/
 test/e2e/videos/
 
-# ignore sensitive files
+# Sensitive environment files
 .env.local
 .env
-
-# ignore Snyk Code scanner files
-.dccache
-
-# Dependencies
-node_modules/
-
-# Environment files
-.env
-.env.local
 .env.development
 .env.production
+
+# Snyk Code scanner files
+.dccache
 
 # Secrets and keys
 *.pem
@@ -45,11 +38,7 @@ node_modules/
 *.p12
 *.pfx
 
-# macOS
-.DS_Store
-
 # Logs
-*.log
 npm-debug.log*
 
 # Test output
@@ -74,6 +63,7 @@ cypress/videos/
 # Local access-control backups
 *.before-access-control-fix
 
+# Local Trivy remediation backup
 Dockerfile.before-trivy-fix
 
 # Local workflow backups

@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - security-assessment
-  pull_request: 
+  pull_request:
     branches:
       - main
   workflow_dispatch:
@@ -15,7 +15,7 @@ permissions:
   pull-requests: read
   security-events: write
 
-jobs:    
+jobs:
   dependency-security:
     name: Dependency Security Gate
     runs-on: ubuntu-latest
@@ -142,7 +142,6 @@ jobs:
         uses: semgrep/semgrep-action@v1
         with:
           config: auto
-
 
   secrets-scan:
     name: Gitleaks Secret Scan
