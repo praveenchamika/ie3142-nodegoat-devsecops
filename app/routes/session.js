@@ -22,23 +22,39 @@ function SessionHandler(db) {
         });
     };
 
-    this.isAdminUserMiddleware = (req, res, next) => {
-        if (req.session.userId) {
-            return userDAO.getUserById(req.session.userId, (err, user) => {
-               return user && user.isAdmin ? next() : res.redirect("/login");
-            });
-        }
-        console.log("redirecting to login");
-        return res.redirect("/login");
 
+    this.isAdminUserMiddleware = (req, res, next) => {
+        const {
+            userId
+        } = req.session;
+
+        if(!userId) {
+           return res.redirect("/login");
+        }
+
+        return userDAO.getUserById(userId, (err, user) => {
+            if (err) {
+	 	return next(err);
+	    }
+
+
+            if (!user || !user.isAdmin) {
+                return res.status(403).send(
+                    "Access denied. Administrator privileges are required."
+                );
+            }
+
+            return next();
+        }); 
     };
 
     this.isLoggedInMiddleware = (req, res, next) => {
         if (req.session.userId) {
             return next();
-        }
-        console.log("redirecting to login");
-        return res.redirect("/login");
+	}
+ 
+	console.log("redirecting to login");
+	return res.redirect("/login");
     };
 
     this.displayLoginPage = (req, res, next) => {

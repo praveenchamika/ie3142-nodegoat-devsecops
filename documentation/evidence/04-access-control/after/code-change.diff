@@ -1,0 +1,66 @@
+diff --git a/app/routes/index.js b/app/routes/index.js
+index a9e5542..6e62184 100644
+--- a/app/routes/index.js
++++ b/app/routes/index.js
+@@ -52,12 +52,9 @@ const index = (app, db) => {
+     app.post("/contributions", isLoggedIn, contributionsHandler.handleContributionsUpdate);
+ 
+     // Benefits Page
+-    app.get("/benefits", isLoggedIn, benefitsHandler.displayBenefits);
+-    app.post("/benefits", isLoggedIn, benefitsHandler.updateBenefits);
+-    /* Fix for A7 - checks user role to implement  Function Level Access Control
+      app.get("/benefits", isLoggedIn, isAdmin, benefitsHandler.displayBenefits);
+      app.post("/benefits", isLoggedIn, isAdmin, benefitsHandler.updateBenefits);
+-     */
++     
+ 
+     // Allocations Page
+     app.get("/allocations/:userId", isLoggedIn, allocationsHandler.displayAllocations);
+diff --git a/app/routes/session.js b/app/routes/session.js
+index 3810fb9..2875ef1 100644
+--- a/app/routes/session.js
++++ b/app/routes/session.js
+@@ -22,25 +22,31 @@ function SessionHandler(db) {
+         });
+     };
+ 
++
+     this.isAdminUserMiddleware = (req, res, next) => {
+-        if (req.session.userId) {
+-            return userDAO.getUserById(req.session.userId, (err, user) => {
+-               return user && user.isAdmin ? next() : res.redirect("/login");
+-            });
++        const {
++            userId
++        } = req.session;
++
++        if(!userId) {
++           return res.redirect("/login");
+         }
+-        console.log("redirecting to login");
+-        return res.redirect("/login");
+ 
+-    };
++        userDAO.getUserById(userId, (err, user) => {
++            if (err) return next(err);
++
++            if (!user || !user.isAdmin) {
++                return res.status(403).send(
++                    "Access denied. Administrator privileges are required."
++                );
++            }
+ 
+-    this.isLoggedInMiddleware = (req, res, next) => {
+-        if (req.session.userId) {
+             return next();
+-        }
+-        console.log("redirecting to login");
+-        return res.redirect("/login");
++        }); 
+     };
+ 
++
++
+     this.displayLoginPage = (req, res, next) => {
+         return res.render("login", {
+             userName: "",

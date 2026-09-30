@@ -1,6 +1,6 @@
 name: E2E Test
 # Legacy upstream Cypress workflow retained for manual execution.
-# Cypress 3.3.1 requires libgconf-2.so.4, which is unavailable
+# Cypress 3.3.1 depends on libgconf-2.so.4, which is unavailable
 # on current GitHub-hosted Ubuntu runners.
 on:
 workflow_dispatch:

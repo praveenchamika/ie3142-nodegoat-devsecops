@@ -1,0 +1,41 @@
+6-
+7-/* The SessionHandler must be constructed with a connected db */
+8-function SessionHandler(db) {
+9-    "use strict";
+10-
+11-    const userDAO = new UserDAO(db);
+12-    const allocationsDAO = new AllocationsDAO(db);
+13-
+14-    const prepareUserData = (user, next) => {
+15-        // Generate random allocations
+16-        const stocks = Math.floor((Math.random() * 40) + 1);
+17-        const funds = Math.floor((Math.random() * 40) + 1);
+18-        const bonds = 100 - (stocks + funds);
+19-
+20-        allocationsDAO.update(user._id, stocks, funds, bonds, (err) => {
+21-            if (err) return next(err);
+22-        });
+23-    };
+24-
+25-
+26:    this.isAdminUserMiddleware = (req, res, next) => {
+27-        const {
+28-            userId
+29-        } = req.session;
+30-
+31-        if(!userId) {
+32-           return res.redirect("/login");
+33-        }
+34-
+35-        userDAO.getUserById(userId, (err, user) => {
+36-            if (err) return next(err);
+37-
+38-            if (!user || !user.isAdmin) {
+39-                return res.status(403).send(
+40-                    "Access denied. Administrator privileges are required."
+41-                );
+42-            }
+43-
+44-            return next();
+45-        }); 
+46-    };

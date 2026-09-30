@@ -52,7 +52,7 @@ function ProfileHandler(db) {
 	const validatedFirstName = String(firstName || "").trim();
 	const validatedLastName = String(lastName || "").trim();
 
-	const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{1,50}$/;
+	const namePattern = /^[A-Za-z' -]{1,50}$/;	
 
 	if (
     	   !namePattern.test(validatedFirstName) ||

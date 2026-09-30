@@ -1,0 +1,5 @@
+Missing Function-Level Access Control Comparison
+================================================
+Findings before remediation: 2
+Findings after remediation: 0
+Findings removed: 2
