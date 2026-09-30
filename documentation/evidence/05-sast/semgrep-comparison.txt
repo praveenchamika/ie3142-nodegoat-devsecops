@@ -1,0 +1,3 @@
+Semgrep before fixes: 34
+Semgrep after fixes: 31
+Difference: 3

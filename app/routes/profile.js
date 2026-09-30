@@ -52,7 +52,7 @@ function ProfileHandler(db) {
 	const validatedFirstName = String(firstName || "").trim();
 	const validatedLastName = String(lastName || "").trim();
 
-	const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{1,50}$/;
+	const namePattern = /^[A-Za-z' -]{1,50}$/;	
 
 	if (
     	   !namePattern.test(validatedFirstName) ||
@@ -78,7 +78,7 @@ function ProfileHandler(db) {
         // --
         // The Fix: Instead of using greedy quantifiers the same regex will work if we omit the second quantifier +
         // const regexPattern = /([0-9]+)\#/;
-        const regexPattern = /^[0-9]++#$/;
+        const regexPattern = /^[0-9]+#$/;
         // Allow only numbers with a suffix of the letter #, for example: 'XXXXXX#'
         const testComplyWithRequirements = regexPattern.test(bankRouting);
         // if the regex test fails we do not allow saving
@@ -102,7 +102,7 @@ function ProfileHandler(db) {
         } = req.session;
 
         profile.updateUser(
-            parseInt(userI, 10),
+            parseInt(userId, 10),
             firstName,
             lastName,
             ssn,
