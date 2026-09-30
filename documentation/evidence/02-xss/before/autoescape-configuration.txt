@@ -1,0 +1,28 @@
+125-    // Fix for A9 - Insecure Dependencies
+126-    marked.setOptions({
+127-        sanitize: true
+128-    });
+129-    app.locals.marked = marked;
+130-
+131-    // Application routes
+132-    routes(app, db);
+133-
+134-    // Template system setup
+135-    swig.setDefaults({
+136-        // Autoescape disabled
+137:        autoescape: false
+138-        /*
+139-        // Fix for A3 - XSS, enable auto escaping
+140:        autoescape: true // default value
+141-        */
+142-    });
+143-
+144-    // Insecure HTTP connection
+145-    http.createServer(app).listen(port, () => {
+146-        console.log(`Express http server listening on port ${port}`);
+147-    });
+148-
+149-    /*
+150-    // Fix for A6-Sensitive Data Exposure
+151-    // Use secure HTTPS protocol
+152-    https.createServer(httpsOptions, app).listen(port, () => {

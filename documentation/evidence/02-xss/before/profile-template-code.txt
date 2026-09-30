@@ -1,0 +1,18 @@
+61-                        <input type="text" class="form-control" id="bankRouting" name="bankRouting" value="{{bankRouting}}" placeholder="Enter bank routing number">
+62-                        <p class="help-block">Must be entered as digits with a suffix of #. For example: 0198212# </p>
+63-                    </div>
+64-                    <div class="form-group">
+65-                        <label for="address">Address</label>
+66-                        <input type="text" class="form-control" id="address" name="address" value="{{address}}" placeholder="Enter address">
+67-                    </div>
+68-                    <div class="form-group">
+69:                        <label for="website">Website</label>
+70:                        <input type="text" class="form-control" id="website" name="website" value="{{website}}"
+71-                            placeholder="https://">
+72-                    </div>
+73-                    <input type="hidden" name="_csrf" value="{{csrftoken}}" />
+74-                    <button type="submit" class="btn btn-default" name="submit">Submit</button>
+75-
+76-                    <!-- @FIXME use a properly escaped variable that matches the URL context, for example
+77-                    refer to a firstNameSafeURLString field on the doc object set by the controller for this template -->
+78-                    <a href="{{firstNameSafeString}}">Google search this profile by name</a>
