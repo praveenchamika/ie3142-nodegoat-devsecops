@@ -14,7 +14,15 @@ const marked = require("marked");
 //const nosniff = require('dont-sniff-mimetype');
 const app = express(); // Web framework to handle routing requests
 const routes = require("./app/routes");
-const { port, db, cookieSecret } = require("./config/config"); // Application config properties
+const { port, db } = require("./config/config");
+
+const sessionSecret = process.env.SESSION_SECRET;
+
+if (!sessionSecret && process.env.NODE_ENV === "production") {
+    throw new Error(
+        "SESSION_SECRET must be configured in production."
+    );
+}
 /*
 // Fix for A6-Sensitive Data Exposure
 // Load keys for establishing secure HTTPS connection
@@ -74,31 +82,17 @@ MongoClient.connect(db, (err, db) => {
         extended: false
     }));
 
-    // Enable session management using express middleware
+    // Enable session management using Express middleware.
     app.use(session({
-        // genid: (req) => {
-        //    return genuuid() // use UUIDs for session IDs
-        //},
-        secret: cookieSecret,
-        // Both mandatory in Express v4
+        secret: sessionSecret || "development-only-session-secret",
         saveUninitialized: true,
-        resave: true
-        /*
-        // Fix for A5 - Security MisConfig
-        // Use generic cookie name
-        key: "sessionId",
-        */
-
-        /*
-        // Fix for A3 - XSS
-        // TODO: Add "maxAge"
+        resave: true,
+        name: "sessionId",
         cookie: {
-            httpOnly: true
-            // Remember to start an HTTPS server to get this working
-            // secure: true
+            httpOnly: true,
+            sameSite: "lax",
+            secure: false
         }
-        */
-
     }));
 
     /*

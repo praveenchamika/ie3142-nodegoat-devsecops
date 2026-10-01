@@ -68,3 +68,10 @@ Dockerfile.before-trivy-fix
 
 # Local workflow backups
 *.backup
+
+# Private keys and certificates
+*.key
+*.pem
+*.p12
+*.pfx
+artifacts/cert/server.key

@@ -121,13 +121,27 @@ jobs:
           node-version: "18.x"
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Verify session secret configuration
+        shell: bash
+        env:
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+        run: |
+          if [ -z "$SESSION_SECRET" ]; then
+            echo "SESSION_SECRET is not configured."
+            exit 1
+          fi
+
+          echo "SESSION_SECRET is securely configured."
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
 
       - name: Run lint
         run: npm run lint --if-present
 
       - name: Run tests
+        env:
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
         run: npm test --if-present
 
   sast:

@@ -1,0 +1,1 @@
+PASS: No real .env file is tracked by Git.
