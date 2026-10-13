@@ -22,7 +22,7 @@ function SessionHandler(db) {
         });
     };
 
-    //The page was previously hidden only in the UI. We enforced administrator authorization on the server : Missing Function-Level Access Control
+
     this.isAdminUserMiddleware = (req, res, next) => {
         const {
             userId

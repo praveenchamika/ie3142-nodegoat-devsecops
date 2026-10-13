@@ -29,9 +29,6 @@ function ContributionsHandler(db) {
 
         /*jslint evil: true */
 
-
-		//fix prevents user input from being executed as JavaScript on the server
-        //Server-Side JavaScript Injection
         const preTax = parseInt(req.body.preTax);
         const afterTax = parseInt(req.body.afterTax);
         const roth = parseInt(req.body.roth);
