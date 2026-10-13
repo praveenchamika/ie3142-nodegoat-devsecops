@@ -137,6 +137,7 @@ MongoClient.connect(db, (err, db) => {
         autoescape: true
         /*
         // Fix for A3 - XSS, enable auto escaping
+        //Automatic output escaping was enabled so user input is rendered as text instead of executable HTML or JavaScript
         autoescape: true // default value
         */
     });
