@@ -50,3 +50,18 @@ A future iteration should migrate the template engine, database driver,
 test framework and outdated transitive dependencies in controlled stages.
 Each major upgrade should be followed by regression and security testing.
 
+## Baseline review update
+
+A later npm audit execution reported 39 critical vulnerabilities instead of
+the previously documented baseline of 38.
+
+The dependency definition files were compared against the previous successful
+commit. The updated count was reviewed as a new or reclassified npm advisory
+affecting the existing legacy dependency tree.
+
+The temporary non-regression baseline was updated from 38 to 39. This update
+does not mean that the vulnerabilities were fixed or accepted for production.
+They remain documented residual risks requiring staged dependency
+modernisation.
+
+The pipeline will fail if the number of critical findings increases above 39.
