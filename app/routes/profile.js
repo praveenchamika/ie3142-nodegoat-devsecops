@@ -49,6 +49,8 @@ function ProfileHandler(db) {
             bankRouting
         } = req.body;
 
+		
+    //Cross-site scripting :server-side validation and output escaping to prevent stored XSS
 	const validatedFirstName = String(firstName || "").trim();
 	const validatedLastName = String(lastName || "").trim();
 
